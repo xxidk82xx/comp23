@@ -35,6 +35,7 @@ void pre_auton(void) {
   FL.spin(forward);
   FR.spin(forward);
   BR.spin(forward);
+  Pult.setVelocity(100, percent);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -70,6 +71,19 @@ void usercontrol(void) {
     FL.setVelocity(Con1.Axis3.position(percent) + Con1.Axis4.position(percent), percent);
     FR.setVelocity(Con1.Axis3.position(percent) - Con1.Axis4.position(percent), percent);
     BR.setVelocity(Con1.Axis3.position(percent) - Con1.Axis4.position(percent), percent);
+
+    if(!LaunchSwitch.pressing() || Con1.ButtonA.pressing())
+      Pult.spin(forward);
+    else
+      Pult.stop();
+    if(LiftSwitch.pressing()) Lift.stop();
+    if(Con1.ButtonA.pressing()) 
+      Lift.setStopping(coast);
+    else
+      Lift.setStopping(brake);
+    
+    
+
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.

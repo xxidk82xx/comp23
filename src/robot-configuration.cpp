@@ -16,6 +16,12 @@ motor FR = motor(PORT2, ratio18_1, false);
 motor BL = motor(PORT4, ratio18_1, true); 
 motor BR = motor(PORT8, ratio18_1, true); 
 
+motor Pult = motor(PORT9, ratio18_1, true);
+limit LaunchSwitch = limit(Brain.ThreeWirePort.A);
+
+motor Lift = motor(PORT10, ratio18_1, false);
+limit LiftSwitch = limit(Brain.ThreeWirePort.A);
+
 // VEXcode generated functions
 
 
