@@ -36,6 +36,9 @@ void pre_auton(void) {
   FR.spin(forward);
   BR.spin(forward);
   Pult.setVelocity(100, percent);
+  Lift.setVelocity(50, percent);
+  Lift.setMaxTorque(100, percent);
+  Pult.setStopping(brake);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -52,6 +55,9 @@ void autonomous(void) {
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
+  Pult.spin(forward);
+  waitUntil(LaunchSwitch.pressing());
+  Pult.stop();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -72,16 +78,28 @@ void usercontrol(void) {
     FR.setVelocity(Con1.Axis3.position(percent) - Con1.Axis4.position(percent), percent);
     BR.setVelocity(Con1.Axis3.position(percent) - Con1.Axis4.position(percent), percent);
 
-    if(!LaunchSwitch.pressing() || Con1.ButtonA.pressing())
-      Pult.spin(forward);
-    else
-      Pult.stop();
-    if(LiftSwitch.pressing()) Lift.stop();
+    //if(!LaunchSwitch.pressing() || Con1.ButtonA.pressing())
+    //  Pult.spin(forward);
+    //else
+    //  Pult.stop();
     if(Con1.ButtonA.pressing()) 
-      Lift.setStopping(coast);
-    else
+    {
+      Lift.spin(reverse);
+    }
+    else if(LiftSwitch.pressing()) 
+      Lift.stop();
+    else if (Con1.ButtonB.pressing())
+      Lift.spin(forward);
+    else 
+    {
       Lift.setStopping(brake);
-    
+      Lift.stop();
+    }
+    if(Con1.ButtonX.pressing())
+      IntakeMotor.spin(forward);
+    else if(Con1.ButtonY.pressing())
+      IntakeMotor.stop();
+      
     
 
 

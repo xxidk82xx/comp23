@@ -16,6 +16,7 @@ extern limit LaunchSwitch;
 extern motor Pult;
 extern motor Lift;
 extern limit LiftSwitch;
+extern motor IntakeMotor;
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 

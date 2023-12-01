@@ -10,17 +10,18 @@ brain  Brain;
 controller Con1;
 
 // VEXcode device constructors
-motor FL = motor(PORT1, ratio18_1, false);
-motor FR = motor(PORT2, ratio18_1, false);
+motor FL = motor(PORT6, ratio18_1, false);
+motor FR = motor(PORT7, ratio18_1, true);
 
-motor BL = motor(PORT4, ratio18_1, true); 
-motor BR = motor(PORT8, ratio18_1, true); 
+motor BL = motor(PORT5, ratio18_1, true); 
+motor BR = motor(PORT4, ratio18_1, false); 
 
 motor Pult = motor(PORT9, ratio18_1, true);
 limit LaunchSwitch = limit(Brain.ThreeWirePort.A);
 
-motor Lift = motor(PORT10, ratio18_1, false);
-limit LiftSwitch = limit(Brain.ThreeWirePort.A);
+motor Lift = motor(PORT1, ratio6_1, false);
+limit LiftSwitch = limit(Brain.ThreeWirePort.B);
+motor IntakeMotor = motor(PORT10, ratio18_1, false);
 
 // VEXcode generated functions
 
